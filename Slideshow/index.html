@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body id="object">
+        <img class="mySlides" src="FBG1.jpg" width="1920px" height="1080px">
+        <img class="mySlides" src="FBG2.jpg" width="1920px" height="1080px">
+        <img class="mySlides" src="FBG3.jpg" width="1920px" height="1080px">
+        <img class="mySlides" src="FBG4.jpg" width="1920px" height="1080px">
+        <img id="img" src="background.png" width="1920px" height="1080px">
+        <div class="loader"></div>
+        <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none"; 
+        }
+        slideIndex++;
+        if (slideIndex > x.length) {slideIndex = 1} 
+        x[slideIndex-1].style.display = "block"; 
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+        </script>
+        <audio autoplay loop id="music">
+            <source src="./song1.mp3" type="audio/mp3">
+            <source src="./song2.mp3" type="audio/mp3">
+            <source src="./song3.mp3" type="audio/mp3">
+        </audio>
+        <script>
+        // Tab = 9
+        // + = 187
+        // - = 189
+        // spacebar = 32
+        document.addEventListener("keydown", function(event) {
+            var music = document.getElementById('music')
+            var play = true
+            if(event.keyCode == 187){
+                music.volume = music.volume + 0.1;
+            }else if(event.keyCode == 189){
+                music.volume = music.volume - 0.1;
+            }else if(event.keyCode == 9){
+                console.log("Song skipped")
+            }else if(event.keyCode == 32){
+                return music.paused ? music.play() : music.pause();
+            }
+        })
+        </script>
+    </body>
+</html>
